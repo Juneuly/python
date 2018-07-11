@@ -28,7 +28,6 @@ def GetJar():
     return files
 
 def GetClassInside(filename):
-    #cmd = "%s\jar.exe -tf %s"%(path, filename)
     cmd = "jar.exe -tf %s"%filename 
     classes = os.popen(cmd).read().split('\n')
     return classes
@@ -51,12 +50,20 @@ if __name__ == '__main__':
         files = GetJar()
 
         class_now = input('请输入类路径(例:com.asiainfo.appframe.ext.exeframe.remote.client.IClient):')
-        f = GetClass(files)
-        if f != 'NO':
-            print(f)
-        else:
-            print('Not find!')
+        if class_now:
+    
+            f = GetClass(files)
+            if f != 'NO':
+                print(f)
+            else:
+                print('Not find!')
 
-        s = input('press any key to continue...')
-        if s:
-            a = 1
+            s = input('press enter to continue...')
+            if s:
+                a = 1
+
+        else:
+            print('类路径不能为空')
+            s = input('press enter to continue...')
+            if s:
+                a = 1
